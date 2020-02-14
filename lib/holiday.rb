@@ -1,19 +1,5 @@
 require 'pry'
-holiday_hash = {
-     :winter => {
-       :christmas => ["Lights", "Wreath"],
-       :new_years => ["Party Hats"]
-     },
-     :summer => {
-       :fourth_of_july => ["Fireworks", "BBQ"]
-     },
-     :fall => {
-       :thanksgiving => ["Turkey"]
-     },
-     :spring => {
-       :memorial_day => ["BBQ"]
-     }
-  }
+
 def second_supply_for_fourth_of_july(holiday_hash)
   # given that holiday_hash looks like this:
   # {
@@ -79,17 +65,15 @@ def all_supplies_in_holidays(holiday_hash)
     holiday_name_hash.each do |holiday_name, supply_list|
       holiday_name_formatted = ""
       supply_list_formatted = ""
-      supply_list_array = []
 
       holiday_name_formatted = holiday_name.to_s.split("_").collect{|name| name.capitalize! }.join(" ")
-      supply_list.each {|supply| supply_list_array << supply}
-      supply_list_formatted = supply_list_array.join(", ")
+      supply_list_formatted = supply_list.join(", ")
       puts "  #{holiday_name_formatted}: #{supply_list_formatted}"
     end
   end
 end
 
-all_supplies_in_holidays(holiday_hash)
+
 
 def all_holidays_with_bbq(holiday_hash)
   # return an array of holiday names (as symbols) where supply lists
@@ -97,7 +81,7 @@ def all_holidays_with_bbq(holiday_hash)
   bbq_array = []
 
   holiday_hash.each do |season, holiday_name_hash|
-    holiday_name_hash.each do |holiday_name, supply_list|
+    holiday_name_hash.collect do |holiday_name, supply_list|
       if supply_list.include? "BBQ"
         bbq_array << holiday_name
       end
